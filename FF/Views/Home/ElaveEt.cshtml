@@ -1,0 +1,115 @@
+﻿@model FF.Models.Product
+
+@{
+    ViewData["Title"] = "Yeni Məhsul";
+}
+
+<style>
+    /* Fayl daxili xüsusi CSS */
+    .add-product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+    }
+
+        .add-product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
+        }
+
+    .form-label {
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .form-control, .form-select {
+        border: 2px solid #e9ecef;
+        padding: 12px 15px;
+        border-radius: 10px;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.1);
+            outline: 0;
+        }
+
+    .btn-submit {
+        background-color: #198754;
+        border: none;
+        padding: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+        .btn-submit:hover {
+            background-color: #157347;
+        }
+
+    .card-header-custom {
+        background: linear-gradient(45deg, #198754, #20c997);
+        color: white;
+        border-radius: 12px 12px 0 0 !important;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card add-product-card shadow-lg rounded-4">
+
+                <!-- Başlıq -->
+                <div class="card-header card-header-custom p-4 text-center">
+                    <h3 class="mb-0"><i class="bi bi-plus-square-fill me-2"></i> Yeni Məhsul Əlavə Et</h3>
+                </div>
+
+                <div class="card-body p-4">
+                    <form asp-action="ElaveEt" method="post">
+
+                        <!-- Məhsul Adı -->
+                        <div class="mb-3">
+                            <label class="form-label">Məhsulun Adı</label>
+                            <input asp-for="Name" class="form-control" placeholder="Məs: MacBook Pro 14" required />
+                        </div>
+
+                        <!-- Kateqoriya -->
+                        <div class="mb-3">
+                            <label class="form-label">Kateqoriya</label>
+                            <select asp-for="Category" class="form-select">
+                                <option value="Elektronika">Elektronika</option>
+                                <option value="Məişət Texnikası">Məişət Texnikası</option>
+                                <option value="Aksesuar">Aksesuar</option>
+                                <option value="Geyim">Geyim</option>
+                                <option value="Digər">Digər</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <!-- Qiymət -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Qiymət (AZN)</label>
+                                <input asp-for="Price" type="number" step="0.01" class="form-control" placeholder="0.00" required />
+                            </div>
+                            <!-- Stok -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Stok Miqdarı</label>
+                                <input asp-for="Stock" type="number" class="form-control" placeholder="0" required />
+                            </div>
+                        </div>
+
+                        <!-- Düymələr -->
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-success btn-submit rounded-pill">
+                                <i class="bi bi-check-circle me-1"></i> Bazaya Əlavə Et
+                            </button>
+                            <a asp-action="Index" class="btn btn-link text-secondary text-decoration-none text-center">
+                                <i class="bi bi-arrow-left"></i> Geri Qayıt
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
